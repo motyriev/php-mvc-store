@@ -18,5 +18,6 @@ require_once ROOT . '/models/Cart.php';
 require_once ROOT . '/models/Order.php';
 require_once ROOT . '/core/AdminBase.php';
 require_once ROOT . '/models/Review.php';
+require_once ROOT . '/models/City.php';
 $router = new Router();
 $router->start();?>
