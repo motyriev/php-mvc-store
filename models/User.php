@@ -46,17 +46,24 @@ class User
 	 */
 	public static function checkFirstName($firstName)
 	{
-		if (strlen($firstName) < 20 and strlen($firstName) >= 4)
-			return true;
-		return false;
-	}
-	public static function checkLastName($lastName)
-	{
-		if (strlen($lastName) < 20 and strlen($lastName) >= 3)
+		if (strlen($firstName) < 20 and strlen($firstName) > 3)
 			return true;
 		return false;
 	}
 
+	public static function checkLastName($lastName)
+	{
+		if (strlen($lastName) < 20 and strlen($lastName) > 2)
+			return true;
+		return false;
+	}
+	//Проверка строки на наличие символов/чисел
+	public static function checkLine($text)
+	{
+		if (preg_match("/[^a-zа-яё ]/iu", $text))
+			return false;
+		return true;
+	}
 
 	/**
 	 * Проверяем инпут на наличие эл.почты или телефона
@@ -142,9 +149,7 @@ class User
 	 */
 	public static function checkEmailExists($email)
 	{
-
 		$conn = Db::getConnect();
-
 		$sql = "
                 SELECT count(*) FROM users
                     WHERE email = :email
@@ -158,7 +163,6 @@ class User
 
 		if ($stmt->fetchColumn())//если не найдена строка с email - true
 			return false;
-
 		return true;
 	}
 
@@ -230,7 +234,7 @@ class User
 		$conn = Db::getConnect();
 
 		$sql = "
-			SELECT id, first_name, last_name, email, phone, password, city, postal, role
+			SELECT id, first_name, last_name, email, phone, city, postal, role
 				FROM users
 			WHERE id = :id
 				";
@@ -284,7 +288,8 @@ class User
 	 * Принимаем данные из контроллера и записываем в БД
 	 * @return bool  возвращает true/false
 	 */
-	public static function editUserInfo($id, $firstName, $lastName, $email, $phone, $password, $city, $postal){
+	public static function editUserInfo($id, $firstName, $lastName, $email, $phone, $city, $postal){
+
 		$db = Db::getConnect();
 
         $sql = "
@@ -294,8 +299,7 @@ class User
                 last_name = :lastName,
                 email = :email,
                 phone = :phone,
-                password = :password,
-				city =  :city
+				city =  :city,
 				postal =  :postal
             WHERE id = :id
             ";
@@ -304,11 +308,31 @@ class User
         $res -> bindParam(':lastName', $lastName, PDO::PARAM_STR);
         $res -> bindParam(':email', $email, PDO::PARAM_STR);
         $res -> bindParam(':phone', $phone, PDO::PARAM_STR);
-        $res -> bindParam(':password', $password, PDO::PARAM_STR);
         $res -> bindParam(':city', $city, PDO::PARAM_STR);
 		$res -> bindParam(':postal', $postal, PDO::PARAM_STR);
 		$res -> bindParam(':id', $id, PDO::PARAM_INT);
 
+
+        return $res->execute();
+	}
+
+	/**
+	* Принимаем данные из контроллера и изменяем пароль юзера
+	* @return bool  возвращает true/false
+	*/
+	public static function editUserPassword($id, $password){
+
+		$db = Db::getConnect();
+
+        $sql = "
+            UPDATE users
+            SET
+                password = :password
+            WHERE id = :id
+            ";
+		$res = $db->prepare($sql);
+        $res -> bindParam(':password', $password, PDO::PARAM_STR);
+		$res -> bindParam(':id', $id, PDO::PARAM_INT);
 
         return $res->execute();
 	}

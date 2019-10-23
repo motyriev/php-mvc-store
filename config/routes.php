@@ -34,6 +34,7 @@ return array(
 	'user/logout' => 'user/logout',
 
 	//Кабинет юзера
+	'cabinet/edit/password' => 'cabinet/editPassword',
 	'cabinet/edit' => 'cabinet/edit',
 	'cabinet/orders' => 'cabinet/ordersHistory',
 	'cabinet' => 'cabinet/index',

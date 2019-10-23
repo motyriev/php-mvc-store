@@ -12,7 +12,7 @@ class Review{
         $stmt->bindParam(':userId', $userId, PDO::PARAM_STR);
         $stmt->bindParam(':productId', $productId, PDO::PARAM_STR);
         $stmt->bindParam(':text', $text, PDO::PARAM_STR);
-        
+
 		return $stmt->execute();
    }
 
