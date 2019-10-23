@@ -1,5 +1,5 @@
 <?php
-
+// Котрроллер Городов
 class AdminCityController extends AdminBase{
 
     /**
@@ -11,13 +11,13 @@ class AdminCityController extends AdminBase{
         if(!self::checkAdmin())
             exit("У вас нет доступа к этому разделу!");
 
-        //выводим список всех товаров
+        //выводим список всех городов
         $cities = City::getCitiesList();
 
         require_once ROOT . "/views/admin_city/index.php";
         return true;
     }
-
+    //Добавление новых городов
     public function actionAdd () {
         //проверка доступа
         if(!self::checkAdmin())
@@ -34,7 +34,7 @@ class AdminCityController extends AdminBase{
         require_once ROOT . '/views/admin_city/add.php';
         return true;
     }
-
+    //Редактирование города
     public function actionEdit ($cityId) {
         //проверка доступа
         if(!self::checkAdmin())
@@ -53,7 +53,7 @@ class AdminCityController extends AdminBase{
         require_once ROOT . '/views/admin_city/edit.php';
         return true;
     }
-
+    // Удаление города
     public function actionDelete($cityId){
         //проверка доступа
         if(!self::checkAdmin())

@@ -1,6 +1,6 @@
 <?php
 class City{
-
+    //Получение списка городов
     public static function getCitiesList () {
         $db = Db::getConnect();
         $sql = "
@@ -11,8 +11,7 @@ class City{
         $cities = $res->fetchAll(PDO::FETCH_ASSOC);
         return $cities;
     }
-
-
+    //Добавить город
     public static function addCity($options){
         $db = Db::getConnect();
 
@@ -26,7 +25,7 @@ class City{
         //Если запрос выполнен успешно
         return $res->execute();
     }
-
+    //Редактировать город
     public static function editCity($cityId, $options){
         $db = Db::getConnect();
          $sql = "UPDATE cities
@@ -44,7 +43,7 @@ class City{
         //Если запрос выполнен успешно
         return $res->execute();
     }
-
+    //Удалить город
     public static function deleteCity($cityId)
     {
         $db = Db::getConnect();
@@ -54,7 +53,7 @@ class City{
         $res->bindParam(':id', $cityId, PDO::PARAM_INT);
         return $res->execute();
     }
-
+    //Получить город по id
     public static function getCityById ($cityId) {
 
         $db = Db::getConnect();
@@ -68,8 +67,8 @@ class City{
         $res->bindParam(':id', $cityId, PDO::PARAM_INT);
         $res->execute();
 
-        $product = $res->fetch(PDO::FETCH_ASSOC);
-        return $product;
+        $city = $res->fetch(PDO::FETCH_ASSOC);
+        return $city;
     }
 
 }
