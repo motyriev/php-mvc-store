@@ -2,6 +2,7 @@
 
 return array(
 
+
 	//комментарии
 	'review/([0-9]+)' => 'review/view/$1',
 	
@@ -52,9 +53,15 @@ return array(
     'admin/product/edit/([0-9]+)' => 'adminProduct/edit/$1',
     'admin/product/add' => 'adminProduct/add',
     'admin/product/delete/([0-9]+)' => 'adminProduct/delete/$1',
-    'admin/product' => 'adminProduct/index',
+	'admin/product' => 'adminProduct/index',
+	
+	//города
+	'admin/city/edit/([0-9]+)' => 'adminCity/edit/$1',
+    'admin/city/add' => 'adminCity/add',
+	'admin/city/delete/([0-9]+)' => 'adminCity/delete/$1',
+	'admin/city' => 'adminCity/index',
 
-    'admin' => 'admin/index',
-
+	'admin' => 'admin/index'
+	
 
 );
