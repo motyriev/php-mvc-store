@@ -71,4 +71,20 @@ class City{
         return $city;
     }
 
+    public static function getCityByName ($cityName) {
+
+        $db = Db::getConnect();
+
+        $sql = "SELECT id, name, region, postcode
+                 FROM cities
+                    WHERE name = :name
+               ";
+
+        $res = $db->prepare($sql);
+        $res->bindParam(':name', $cityName, PDO::PARAM_STR);
+        $res->execute();
+        $city = $res->fetch(PDO::FETCH_ASSOC);
+        return $city;
+    }
+
 }

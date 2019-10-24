@@ -61,6 +61,12 @@ return array(
 	'admin/city/delete/([0-9]+)' => 'adminCity/delete/$1',
 	'admin/city' => 'adminCity/index',
 
+	//почта
+	'admin/post/edit/([0-9]+)' => 'adminPost/edit/$1',
+    'admin/post/add' => 'adminPost/add',
+	'admin/post/delete/([0-9]+)' => 'adminPost/delete/$1',
+	'admin/post' => 'adminPost/index',
+
 	'admin' => 'admin/index'
 	
 

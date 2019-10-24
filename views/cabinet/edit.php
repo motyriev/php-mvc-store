@@ -29,10 +29,21 @@ include (ROOT . '/views/parts/header.php');
                 <input type="text" name="phone" placeholder= <?= $userInfo['phone'] ?>>
                 <p>Пароль</p>
                 <input type="password" name="password" placeholder="Введите новый пароль">
-                <p>Отделение Новой Почты</p>
-                <input type="text" name="city" placeholder= <?= $userInfo['city'] ?>>
-                <p>Отделение Новой Почты</p>
-                <input type="text" name="postal" placeholder= <?= $userInfo['postal'] ?>>
+                <p>Адрес доставки</p>
+                <select name = "city_id">
+                    <?php $city = City::getCityById($userInfo['city_id'])?>
+                    <option value = <?php echo $userInfo['city_id'] ?>> <? echo $city['name'] ?>  </option>
+                    <?php foreach ($cities as $city): ?>
+                    <option value = <?php echo $city['id'] ?>> <? echo $city['name'] ?>  </option>
+					<?php endforeach; ?>
+                </select>
+                <select name = "postoffice_id">
+                    <?php $postoffice = PostOffice::getPostById($userInfo['postoffice_id'])?>
+                    <option value = <?php echo $userInfo['postoffice_id'] ?>> <? echo $postoffice['name'] ?>  </option>
+                    <?php foreach ($postoffices as $fostoffice): ?>
+                    <option value = <?php echo $fostoffice['id'] ?>> <? echo $fostoffice['name'] ?>  </option>
+					<?php endforeach; ?>
+                </select>
                 <input type=submit name="submit" value="Сохранить" id="save_btn">
             </form>
         <?php endif;?>

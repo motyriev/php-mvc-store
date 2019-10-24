@@ -19,6 +19,8 @@ class CabinetController
     }
     public function actionEdit (){
 
+        $cities = City::getCitiesList();
+		$postoffices = PostOffice::getPostList();
         //Получаем инфу о юзере из сессии
         $userId = User::checkLog();
         $userInfo = User::getUserById($userId);
@@ -32,8 +34,8 @@ class CabinetController
 			$email = trim(strip_tags($_POST['email']));
 			$phone = trim(strip_tags($_POST['phone']));
 			$password = trim(strip_tags($_POST['password']));
-			$city = trim(strip_tags($_POST['city']));
-            $postal = trim(strip_tags($_POST['postal']));
+			$city = trim(strip_tags($_POST['city_id']));
+            $postal = trim(strip_tags($_POST['postoffice_id']));
 
             //Флаг ошибок
             $errors = false;

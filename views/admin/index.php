@@ -14,6 +14,7 @@ include (ROOT . '/views/parts/header_admin.php');
         <li><a target="_blank" href="/admin/category">Управление категориями</a></li>
         <li><a target="_blank" href="/admin/orders">Управление заказами</a></li>
         <li><a target="_blank" href="/admin/city">Управление городами</a></li>
+        <li><a target="_blank" href="/admin/post">Управление почтой</a></li>
     </ul>
 </div>
 <div class="appendix"></div>
