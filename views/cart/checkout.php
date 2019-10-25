@@ -24,8 +24,15 @@ include (ROOT . '/views/parts/header.php');
             <?php endif;?>
             <form action="#" method="post" id="checkout_form">
                 <p>Для оформления заказа заполните форму. Наш менеджер свяжется с Вами.</p>
-                <input required type="text" name="name" placeholder="Введите имя" value="<?php echo $userName;?>">
-                <input required type="tel" name="tel" pattern="0([0-9]{2})([0-9]{7})" placeholder="Телефон в формате: 0(xx)-xxx-xx-xx">
+                <input required type="text" name="name" placeholder="Введите имя" value="<?php echo $user['first_name']." ".$user['last_name'];?>">
+                <input required type="tel" name="tel" value = <?php echo $user['phone']?> pattern="0([0-9]{2})([0-9]{7})" placeholder="Телефон в формате: 0(xx)-xxx-xx-xx">
+                <select name = "postoffice_id">
+                    <?php $postoffice = PostOffice::getPostById($user['postoffice_id'])?>
+                    <option value = <?php echo $user['postoffice_id'] ?>> <? echo $postoffice['name'] ?>  </option>
+                    <?php foreach ($postoffices as $fostoffice): ?>
+                    <option value = <?php echo $fostoffice['id'] ?>> <? echo $fostoffice['name'] ?>  </option>
+					<?php endforeach; ?>
+                </select>
                 <textarea name="comment" placeholder="Комментарий к заказу"></textarea>
                 <input type=submit name="submit" value="Оформить заказ" id="check_btn">
             </form>
