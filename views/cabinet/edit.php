@@ -3,9 +3,8 @@ include (ROOT . '/views/parts/header.php');
 ?>
 <section>
     <div class="container">
-    <?php var_dump($_POST)?>
             <?php if($res):?>
-                <h4 id="edit_thanks">Данные успешно изменены!</h4>
+                <h4 id="edit_thanks">Персональные данные сохранены</h4>
                 <h3 id="to_cabinet">Вернуться в <a href="/cabinet" id="reg_main_a">Кабинет</a></h3>
             <?php else: ?>
 
@@ -20,11 +19,11 @@ include (ROOT . '/views/parts/header.php');
             <form action="#" method="post" id="edit_form">
                 <h2>Редактирование личных данных</h2>
                 <p>Имя</p>
-                <input type="text" name="first_name" placeholder= <?= $userInfo['first_name']?>>
+                <input type="text" name="first_name" value= <?= $userInfo['first_name']?>>
                 <p>Фамилия</p>
-                <input type="text" name="last_name" placeholder= <?= $userInfo['last_name'] ?>>
+                <input type="text" name="last_name" value= <?= $userInfo['last_name'] ?>>
                 <p>Электронная почтa</p>
-                <input type="email" name="email" placeholder= <?= $userInfo['email'] ?>>
+                <input type="email" name="email" value= <?= $userInfo['email'] ?>>
                 <p>Телефон</p>
                 <input type="text" name="phone" placeholder= <?= $userInfo['phone'] ?>>
                 <p>Пароль</p>

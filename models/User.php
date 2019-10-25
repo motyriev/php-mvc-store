@@ -46,17 +46,24 @@ class User
 	 */
 	public static function checkFirstName($firstName)
 	{
-		if (strlen($firstName) < 20 and strlen($firstName) >= 4)
-			return true;
-		return false;
-	}
-	public static function checkLastName($lastName)
-	{
-		if (strlen($lastName) < 20 and strlen($lastName) >= 3)
+		if (strlen($firstName) < 20 and strlen($firstName) > 3)
 			return true;
 		return false;
 	}
 
+	public static function checkLastName($lastName)
+	{
+		if (strlen($lastName) < 20 and strlen($lastName) > 2)
+			return true;
+		return false;
+	}
+	//Проверка строки на наличие символов/чисел
+	public static function checkLine($text)
+	{
+		if (preg_match("/[^a-zа-яё ]/iu", $text))
+			return false;
+		return true;
+	}
 
 	/**
 	 * Проверяем инпут на наличие эл.почты или телефона
@@ -142,9 +149,7 @@ class User
 	 */
 	public static function checkEmailExists($email)
 	{
-
 		$conn = Db::getConnect();
-
 		$sql = "
                 SELECT count(*) FROM users
                     WHERE email = :email
@@ -158,7 +163,6 @@ class User
 
 		if ($stmt->fetchColumn())//если не найдена строка с email - true
 			return false;
-
 		return true;
 	}
 
@@ -310,6 +314,27 @@ class User
 		$res -> bindParam(':id', $id, PDO::PARAM_INT);
 
 		
+        return $res->execute();
+	}
+
+	/**
+	* Принимаем данные из контроллера и изменяем пароль юзера
+	* @return bool  возвращает true/false
+	*/
+	public static function editUserPassword($id, $password){
+
+		$db = Db::getConnect();
+
+        $sql = "
+            UPDATE users
+            SET
+                password = :password
+            WHERE id = :id
+            ";
+		$res = $db->prepare($sql);
+        $res -> bindParam(':password', $password, PDO::PARAM_STR);
+		$res -> bindParam(':id', $id, PDO::PARAM_INT);
+
         return $res->execute();
 	}
 

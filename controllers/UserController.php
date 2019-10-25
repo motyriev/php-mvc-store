@@ -57,7 +57,7 @@ class UserController
 				$errors[] = "Укажите отделение Новой Почты!";
 
 				if (!User::checkEmailExists($email))
-					$errors[] = "Этот 'e-mail' уже используется.";
+					$errors[] = "Этот e-mail уже используется.";
 				if (!User::checkPhoneExists($phone))
 					$errors[] = "Этот номер уже используется.";
 

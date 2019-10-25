@@ -65,7 +65,7 @@ class AdminProductController extends AdminBase {
         if(!self::checkAdmin())
             exit("У вас нет доступа к этому разделу!");
 
-        // Получаем список категорий для выпадающего списка
+        //Получаем список категорий для выпадающего списка
         $categories = Category::getCategoryListAdmin();
 
         //Получаем информацию о выбранном товаре
