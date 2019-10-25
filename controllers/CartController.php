@@ -105,7 +105,7 @@ class CartController
             {
                 // Если ошибок нет
                 // Сохраняем заказ в базе данных
-                $res = Order::save($userId, $userName, $userPhone, $productsInCart, $userText);
+                $res = Order::save($userId, $userName, $userPhone, $productsInCart, $userText, $user['postoffice_id']);
                
                 if($res){
                     // Если заказ успешно сохранен
