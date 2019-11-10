@@ -4,8 +4,7 @@
  */
 class Router
 {
-	protected $params = [];
-	private $routes;
+	private $routes = array();
 
 	/**
 	 * Router constructor подключает маршруты
@@ -13,6 +12,16 @@ class Router
 	public function __construct()
 	{
 		$this->routes = include("config/routes.php");
+	}
+
+	/**
+	 * @return string текущий адрес запроса
+	 */
+	public function getURI()
+	{
+		if (isset($_SERVER['REQUEST_URI']) and !empty($_SERVER['REQUEST_URI']))
+
+			return trim($_SERVER['REQUEST_URI'], '/');
 	}
 
 	public function start()
@@ -25,11 +34,10 @@ class Router
 		foreach ($this->routes as $uriPattern => $path) {
 
 			// сравниваем uriPattern и $uri
-			if (preg_match("~$uriPattern~", $uri)) {
+			if (preg_match("#^$uriPattern$#", $uri)) {
 
 				// Получаем внутренний путь из внешнего согласно правилу
-				$innerRoute = preg_replace("~$uriPattern~", $path, $uri);
-
+				$innerRoute = preg_replace("#^$uriPattern$#", $path, $uri);
 				// Определяем контроллер, action, параметры
 				$segments = explode('/', $innerRoute);
 
@@ -40,7 +48,7 @@ class Router
 				$parameters = $segments;
 
 				//Подключаем файл контроллера
-				$controllerFile = "controllers/" . $controllerName . ".php";
+				$controllerFile = ROOT . "/controllers/" . $controllerName . ".php";
 				if (file_exists($controllerFile))
 					include_once($controllerFile);
 
@@ -49,22 +57,12 @@ class Router
 
 				$result = call_user_func_array(array($controllerObject, $actionName), $parameters);
 
-				if ($result !== null)
-					break;
+				if ($result != null)
+                    break;
 			}
 		}
 	}
 
 
 	// запуск роутера
-
-	/**
-	 * @return string текущий адрес запроса
-	 */
-	public function getURI()
-	{
-		if (isset($_SERVER['REQUEST_URI']) and !empty($_SERVER['REQUEST_URI']))
-
-			return trim($_SERVER['REQUEST_URI'], '/');
-	}
 }?>

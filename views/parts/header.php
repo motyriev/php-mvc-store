@@ -5,15 +5,20 @@
     <title>Hi-tech Shop</title>
     <link href="<?php ROOT?>/template/css/main.css" rel="stylesheet">
     <script src="<?php ROOT?>/template/js/jquery.js"></script>
+    <script src="<?php ROOT?>/template/js/main.js"></script>
 </head>
 <body>
 <div id="wrapper">
     <header id="header">
-        <link href="<?php ROOT?>/template/css/main.css" rel="stylesheet">
-        <script src="<?php ROOT?>/template/js/jquery.js"></script>
         <div class="header_middle">
             <a href="/" class="logo"><img alt="" src="<?php ROOT?>/template/images/logo.png"/></a>
             <ul class="header_middle_nav">
+            <form action="search" method="post" autocomplete="off">
+    <input type="search" name="search" id="search">
+    <ul id="here">
+
+    </ul>
+    </form>
             <?php if(User::isGuest()):?>
             <li><a href="/cart">
                     Корзина

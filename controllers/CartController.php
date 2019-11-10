@@ -16,7 +16,7 @@ class CartController
     //Удаление товара из корзины
     public function actionDelete($productId){
         Cart::delProduct($productId);
-        header('Location: /cart');
+        return header('Location: /cart');
     }
     /**
      * Главная страница корзины

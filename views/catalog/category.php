@@ -9,7 +9,7 @@ global $category;
             <h2>Категории</h2>
             <ul class="left_sidebar">
                 <?php foreach ($categories as $catItem): ?>
-                    <li><a href="/category/<?php echo $catItem['uriName']?>" class="<?php if($catUriName == $catItem['uriName']){
+                    <li><a href="/catalog/<?php echo $catItem['uriName']?>" class="<?php if($catUriName == $catItem['uriName']){
                         echo 'active';
                         $category = $catItem['name'];
                     }?>">

@@ -181,4 +181,21 @@ class Product
         $res->bindParam(':id', $productId, PDO::PARAM_INT);
         return $res->execute();
     }
+
+    //Живой поиск по сайту
+    public static function findProductsByKeywords($keywords){
+        $db = Db::getConnect();
+
+        $sql = "
+                SELECT id, name FROM products
+                  WHERE name LIKE :keywords LIMIT 10
+                ";
+
+        $res = $db->prepare($sql);
+
+        $res->execute(array(':keywords' => '%'.$keywords.'%'));
+
+        //Получение и возврат результатов
+        return $res->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

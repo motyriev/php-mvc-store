@@ -14,7 +14,6 @@ class IndexController
 		// $latestProducts = Product::getLatestProducts();
 
         require_once ROOT . '/views/index/index.php';
-
 		return true;
 	}
 }

@@ -8,7 +8,7 @@ include ROOT . '/views/parts/header.php';
             <h2>Каталог</h2>
             <ul class="left_sidebar">
                 <?php foreach ($categories as $catItem):?>
-                <li><a href="category/<?php echo $catItem['uriName']?>">
+                <li><a href="catalog/<?php echo $catItem['uriName']?>">
                     <?php echo $catItem['name']?>
                 </a></li>
                 <?php endforeach; ?>

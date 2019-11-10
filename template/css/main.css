@@ -60,7 +60,7 @@ section, .header_middle, .header_bottom {
 .header_middle {
     clear: both;
     height: 79px;
-        background: #000000;
+        background: grey;
 }
 
 .header_middle_nav {
@@ -1201,4 +1201,19 @@ section, .header_middle, .header_bottom {
     margin-right: 25px;
     color: #1eff4f;
     margin-top: 25px;
+}
+#here
+{
+    width:400px;
+    height:300px;
+    border: 1px solid grey;
+    display:none;
+}
+
+#here a{
+display:block;
+width:98%;
+padding:1%;
+font-size:20px;
+border-bottom:1px solid grey;
 }

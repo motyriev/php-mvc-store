@@ -1,26 +1,25 @@
 <?php
 
 return array(
+	//Главаня страница
+	'index.php' => 'index/index', //вызываем actionIndex в IndexController
+	'' => 'index/index',  //вызываем actionIndex в IndexController
 
-
+	'search/([a-z]+)' => 'search/index/$1',
 	//комментарии
 	'review/([0-9]+)' => 'review/view/$1',
-	
+
 	//корзина
 	'cart/add/([0-9]+)' => 'cart/add/$1',
 	'cart/checkout' => 'cart/checkout',
 	'cart/delete/([0-9]+)' => 'cart/delete/$1',
 	'cart' => 'cart/index',
 
-
-	//Главаня страница
-	'index.php' => 'index/index', //вызываем actionIndex в IndexController
-	'' => 'index/index',  //вызываем actionIndex в IndexController
 	//Товар
 	'product/([0-9]+)' => 'product/view/$1', //actionView в ProductController
 
 	//Категория товара
-	'category/([a-z]+)' => 'catalog/category/$1', //actionCategory в CatalogController
+	'catalog/([a-z]+)' => 'catalog/category/$1', //actionCategory в CatalogController
 
 	//Каталог
 	'catalog/page-([0-9]+)' => 'catalog/index/$1',
@@ -55,7 +54,7 @@ return array(
     'admin/product/add' => 'adminProduct/add',
     'admin/product/delete/([0-9]+)' => 'adminProduct/delete/$1',
 	'admin/product' => 'adminProduct/index',
-	
+
 	//города
 	'admin/city/edit/([0-9]+)' => 'adminCity/edit/$1',
     'admin/city/add' => 'adminCity/add',
@@ -69,6 +68,5 @@ return array(
 	'admin/post' => 'adminPost/index',
 
 	'admin' => 'admin/index'
-	
 
 );
