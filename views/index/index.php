@@ -7,11 +7,6 @@ include ROOT . '/views/parts/header.php';
         <div class="sidebar">
             <h2>Каталог</h2>
             <ul class="left_sidebar">
-                <?php foreach ($categories as $catItem):?>
-                <li><a href="catalog/<?php echo $catItem['uriName']?>">
-                    <?php echo $catItem['name']?>
-                </a></li>
-                <?php endforeach; ?>
             </ul>
         </div>
         <!--main content-->

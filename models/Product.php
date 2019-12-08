@@ -6,21 +6,20 @@ class Product
 {
     /**
      * Выводим товары по выбранной категории
-     *
-     * @param $catUriName id категории
-     * @param $page  - текущая страница
+     * @param $catAlias ид. категории
      * @return array
      */
-    public static function getProductListByCatId ($catUriName) {
+    public static function getProductListByCatId ($catId, $sql_parts = NULL) {
         $db = Db::getConnect();
 
-        $sql = "
-                SELECT id, name, price FROM products
-                  WHERE categoryName = :categoryName
+        $sql = "SELECT * FROM products
+                    WHERE cat_id = :id AND alias IS NOT NULL
+                    $sql_parts
                 ";
 
         $res = $db->prepare($sql);
-        $res->bindParam(':categoryName', $catUriName, PDO::PARAM_STR);
+
+        $res->bindParam(':id', $catId, PDO::PARAM_INT);
 
         $res->execute();
 
@@ -60,18 +59,17 @@ class Product
      * @param $productId
      * @return mixed
      */
-    public static function getProductById ($productId) {
+    public static function getProductByAlias($productAlias) {
 
         $db = Db::getConnect();
 
         $sql = "
-               SELECT id, categoryName, name, price, availability, brand,
-                description FROM products
-                    WHERE id = :id
+               SELECT * FROM products
+                    WHERE alias = :alias
                ";
 
         $res = $db->prepare($sql);
-        $res->bindParam(':id', $productId, PDO::PARAM_INT);
+        $res->bindParam(':alias', $productAlias, PDO::PARAM_STR);
         $res->execute();
 
         $product = $res->fetch(PDO::FETCH_ASSOC);

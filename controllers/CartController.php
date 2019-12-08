@@ -8,11 +8,10 @@ class CartController
      * @param $productId
      */
     public function actionAdd($productId){
-
         echo Cart::addProduct($productId);
         return true;
     }
-    
+
     //Удаление товара из корзины
     public function actionDelete($productId){
         Cart::delProduct($productId);
@@ -25,8 +24,7 @@ class CartController
      */
      public function actionIndex (){
 
-        $categories = array();
-        $categories = Category::getCategory();
+        $categories = Category::getCategories();
 
         $productsInCart = false;
 
@@ -56,9 +54,9 @@ class CartController
         }
 
         //Список категорий для сайдбара
-        $categories = Category::getCategory();
+        $categories = Category::getCategories();
         $postoffices = Postoffice::getPostList();
-        
+
         //Общая стоимость
         $productsIds = array_keys($productsInCart);
         $products = Product::getProductsById($productsIds);
@@ -74,46 +72,43 @@ class CartController
 
         //Статус успешного оформления заказа
         $res = false;
-
+        
         //Проверка на авторизацию
         if(!User::isGuest()){
             //если не гость, получаем данные о пользователе из БД
             $userId = User::checkLog();
             $user = User::getUserById($userId);
-            $userName = $user['name'];
-        }else{
-            //Если гость, то поля формы будут пустыми
-            $userId = false;
-        }
+            $userName = $user['first_name'];
+        }else $userId = false; //Если гость, то поля формы будут пустыми
 
         //Обработка формы
-        if(isset($_POST) and !empty($_POST)){
-            $userName = trim(strip_tags($_POST['name']));
+        if (isset($_POST) and !empty($_POST)) {
+            $userName = trim(strip_tags($_POST['first_name']));
             $userPhone = trim(strip_tags($_POST['tel']));
             $userText = trim(strip_tags($_POST['comment']));
             $postoffice = trim(strip_tags($_POST['postoffice_id']));
-        }
 
-        //Флаг ошибок
-        $errors = false;
+            //Флаг ошибок
+            $errors = false;
             //Валидация полей
-            if (!User::checkLastName($userName))
+            if (!User::checkFirstName($userName)) {
                 $errors[] = 'Имя не может быть короче 2-х символов';
+            }
 
-            if (!User::checkPhone($userPhone))
+            if (!User::checkPhone($userPhone)) {
                 $errors[] = 'Введите корректный номер';
-            
-            if($errors == false)
-            {
+            }
+
+            if (!$errors) {
                 // Если ошибок нет
-                // Сохраняем заказ в базе данных
+                // Сохраняем заказ в БД
                 $res = Order::save($userId, $userName, $userPhone, $productsInCart, $userText, $postoffice);
-               
-                if($res){
+
+                if ($res) {
                     // Если заказ успешно сохранен
                     // Оповещаем администратора о новом заказе по почте
                     $adminEmail = 'RocketaTemo@gmail.com';
-                    $message = '<a href="http://e-shopper.esy.es/admin/orders">Список заказов</a>';
+                    $message = '<a href="http://vape.shop/admin/orders">Список заказов</a>';
                     $subject = 'Новый заказ!';
                     mail($adminEmail, $subject, $message);
 
@@ -121,6 +116,7 @@ class CartController
                     Cart::clear();
                 }
             }
+        }
         require_once ROOT . '/views/cart/checkout.php';
         return true;
     }

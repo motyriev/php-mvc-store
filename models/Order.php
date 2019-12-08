@@ -8,15 +8,14 @@ class Order{
 
         //Преобразовываем массив товаров в строку JSON
         $productsInCart = json_encode($productsInCart);
-        
         $sql = "
-            INSERT INTO orders (userId,userName, userPhone, userText, products, postoffice_id) 
+            INSERT INTO orders (user_id, user_name, user_phone, user_text, products, postoffice_id
                 VALUES (:userId, :userName, :userPhone, :userText, :products, :postoffice_id)
             ";
         $res = $conn->prepare($sql);
         $res->bindParam(':userId', $userId, PDO::PARAM_INT);
         $res->bindParam(':userName', $userName, PDO::PARAM_STR);
-        $res->bindParam(':userPhone', $userPhone, PDO::PARAM_INT);
+        $res->bindParam(':userPhone', $userPhone, PDO::PARAM_STR);
         $res->bindParam(':userText', $userText, PDO::PARAM_STR);
         $res->bindParam(':products', $productsInCart, PDO::PARAM_STR);
         $res->bindParam(':postoffice_id', $postofficeId, PDO::PARAM_INT);

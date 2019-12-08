@@ -2,14 +2,21 @@
 
 class ProductController
 {
-    public function actionView($productId){
+    public function actionView($productAlias){
 
-        $categories = Category::getCategory();
+        $categories = Category::getCategories();
+        $product = Product::getProductByAlias($productAlias);
 
-        $product = Product::getProductById($productId);
-        $reviews = Review::getTopReviewListByProductId($productId);
+        //хлебные крошки
+        $breadcrumbs = Breadcrumbs::getBreadcrumbs($product['cat_id'], $product['name']);
+
+        //получаем последнии 3 отзыва товара
+        $reviews = Review::getTopReviewListByProductId($product['id']);
+
+        //поулучаем кол-во отзывов товара
+        $qtyReviews = count(Review::getReviewListByProductId($product['id']));
+
         require_once ROOT . '/views/single_item/index.php';
-
         return true;
     }
 }

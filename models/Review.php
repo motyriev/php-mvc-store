@@ -3,15 +3,17 @@
 class Review{
 
 
-   public static function createReview($userId, $productId, $text){
-       $conn = Db::getConnect();
-       $sql = "
-                INSERT INTO review(user_id, product_id, text)
-                VALUES(:userId, :productId, :text)";
+    public static function createReview($userId, $productId, $text){
+        $conn = Db::getConnect();
+
+        $sql = "INSERT INTO reviews (product_id, user_id, text)
+                    VALUES (:productId, :userId, :text)
+                ";
+
         $stmt = $conn->prepare($sql);
-        $stmt->bindParam(':userId', $userId, PDO::PARAM_STR);
-        $stmt->bindParam(':productId', $productId, PDO::PARAM_STR);
+        $stmt->bindParam(':userId', $userId, PDO::PARAM_INT);
         $stmt->bindParam(':text', $text, PDO::PARAM_STR);
+        $stmt->bindParam(':productId', $productId, PDO::PARAM_INT);
 
 		return $stmt->execute();
    }
@@ -22,30 +24,32 @@ class Review{
     return false;
    }
 
-   public static function getReviewListByProductId ($productId) {
+   public static function getReviewListByProductId($productId) {
     $db = Db::getConnect();
-    $sql = "SELECT id, product_id, user_id, text, date FROM review 
-              WHERE product_id = :productId 
+
+    $sql = "SELECT * FROM reviews
+                WHERE product_id = :id
             ";
     $res = $db->prepare($sql);
-    $res->bindParam(':productId', $productId, PDO::PARAM_STR);
+    $res->bindParam(':id', $productId, PDO::PARAM_INT);
 
     $res->execute();
     $reviews = $res->fetchAll(PDO::FETCH_ASSOC);
     return $reviews;
    }
 
-    public static function getTopReviewListByProductId ($productId) {
-        $db = Db::getConnect();
-        $sql = "SELECT id, product_id, user_id, text, date FROM review
-                  WHERE product_id = :productId order by date desc limit 3
-                ";
-        $res = $db->prepare($sql);
-        $res->bindParam(':productId', $productId, PDO::PARAM_STR);
-    
-        $res->execute();
-        $reviews = $res->fetchAll(PDO::FETCH_ASSOC);
-        return $reviews;
+   public static function getTopReviewListByProductId ($productId) {
+    $db = Db::getConnect();
+    $sql = "SELECT * FROM reviews
+              WHERE product_id = :productId order by date desc limit 3
+            ";
+    $res = $db->prepare($sql);
+    $res->bindParam(':productId', $productId, PDO::PARAM_INT);
+
+    $res->execute();
+    $reviews = $res->fetchAll(PDO::FETCH_ASSOC);
+    debug($reviews);
+    return $reviews;
 }
 
 

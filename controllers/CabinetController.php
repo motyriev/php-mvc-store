@@ -9,6 +9,7 @@ class CabinetController
      * @return bool
      */
      public function actionIndex(){
+
         //Получаем id пользователя из сессии
         $userId =  User::checkLog();
         //Получаем всю информацию о пользователе из БД
@@ -17,11 +18,13 @@ class CabinetController
         require_once ROOT . '/views/cabinet/index.php';
         return true;
     }
+
     public function actionEditPassword (){
 
         //Получаем инфу о юзере из сессии
         $userId = User::checkLog();
         $userInfo = User::getUserById($userId);
+        $res = '';
 
         if(isset($_POST) and (!empty($_POST)))
         {
@@ -66,7 +69,6 @@ class CabinetController
 			$lastName = trim(strip_tags($_POST['last_name']));
 			$email = trim(strip_tags($_POST['email']));
 			$phone = trim(strip_tags($_POST['phone']));
-			$password = trim(strip_tags($_POST['password']));
 			$city = trim(strip_tags($_POST['city_id']));
             $postal = trim(strip_tags($_POST['postoffice_id']));
 

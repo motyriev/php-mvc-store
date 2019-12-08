@@ -1,25 +1,27 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: #FFFFFF;
-    font-family: "Century Gothic", sans-serif;
-    color: dark;
+    line-height: 1.42857143;
+    font-family: Din,OswaldMedium, Helvetica, Arial, sans-serif;
+    background: #f1f1f1 url(/pics/bg.jpg) scroll repeat 0 0;
+    color: #000;
+    font-size: 14px;
 }
-
+a{
+    text-decoration: none;
+}
+li{
+    text-decoration: none;
+    list-style: none;
+}
 body textarea {
     resize: none;
 }
 
 /*********для прижатого футера*****************************/
-html, body {
+html {
     height: 100%;
 }
-
-#wrapper {
-    min-height: 100%;
-}
-
-
 .appendix {
     height: 45px;
     clear: both;
@@ -39,61 +41,15 @@ body a {
     color: dark;
 }
 
-section, .header_middle, .header_bottom {
+section {
     margin: 0 auto;
-    width: 1200px;
+    width: 90%;
 }
 
 
 #header {
-    width: 1200px;
+    width: 100%;
     margin: 0 auto;
-}
-
-.header_top_nav_1 {
-    width: 500px;
-    float: left;
-    margin-top: 3px;
-    margin-bottom: 0;
-    margin-left: 38px;
-}
-.header_middle {
-    clear: both;
-    height: 79px;
-        background: grey;
-}
-
-.header_middle_nav {
-    float: right;
-    margin-top: 27px;
-}
-
-.header_middle_nav li {
-    display: inline-block;
-    margin-right: 25px;
-}
-
-.header_middle_nav li:last-child {
-    margin-right: 0;
-}
-
-.header_middle_nav li a {
-    font-size: 14px;
-}
-
-.header_middle_nav li a:hover {
-    color: #1eff4f;
-    -webkit-transition: 0.6s;
-    -moz-transition: 0.6s;
-    -o-transition: 0.6s;
-    transition: 0.6s;
-}
-
-.header_middle_nav li a:not(:hover) {
-    -webkit-transition: 0.6s;
-    -moz-transition: 0.6s;
-    -o-transition: 0.6s;
-    transition: 0.6s;
 }
 
 .logo {
@@ -101,42 +57,57 @@ section, .header_middle, .header_bottom {
     margin-top: 18px;
     margin-left: 36px;
 }
-
-.header_bottom {
-    clear: both;
-    padding: 0 0 25px;
+.top_nav{
+    display: flex;
+    font-size: 16px;
+    justify-content: space-between;
+}
+.top_nav .main{
+    position: center;
+}
+.top_nav .main ul{
+    display: flex;
+    font-size: 13px;
+}
+.top_nav .main ul li{
+    padding-left:3px;
 }
 
-.header_bottom_nav {
-    margin: 0;
-    padding: 0;
+.top_nav .main ul li:not(:first-child):before {
+    content: " | ";
+}
+.top_nav .phones{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.header_bottom{
+    width: 100%;
+    height: 80px;
+    font-size: 18px;
+    background-color: green;
+}
+.search #search{
+    float: right;
+    height: inherit;
+    width: 80%;
+    border: 1px solid grey;
+}
+#here
+{
+    width:400px;
+    height:300px;
+    border: 1px solid grey;
+    display:none;
 }
 
-.header_bottom_nav li {
-    display: inline-block;
-    margin-right: 25px;
+#here a{
+display:block;
+width:98%;
+padding:1%;
+font-size:20px;
+border-bottom:1px solid grey;
 }
-
-.header_bottom_nav li a {
-    font-size: 17px;
-    font-family: "Century Gothic", sans-serif;
-}
-
-.header_bottom_nav li a:hover {
-    color: #1eff4f;
-    -webkit-transition: 0.6s;
-    -moz-transition: 0.6s;
-    -o-transition: 0.6s;
-    transition: 0.6s;
-}
-
-.header_bottom_nav li a:not(:hover) {
-    -webkit-transition: 0.6s;
-    -moz-transition: 0.6s;
-    -o-transition: 0.6s;
-    transition: 0.6s;
-}
-
 .container .sidebar {
     width: 275px;
     float: left;
@@ -147,8 +118,7 @@ section, .header_middle, .header_bottom {
     width: 925px;
 }
 
-.container .content .item {
-    border: 1px solid #dadad8;
+.container .content .product-item {
     float: left;
     margin-bottom: 28px;
     margin-right: 28px;
@@ -167,49 +137,65 @@ section, .header_middle, .header_bottom {
     width: 235px;
     margin: 0 auto 30px;
 }
-
-.item_price {
-    font-weight: bold;
-    font-size: 22px;
-    color: #1eff4f;
+.product-item {
+    border-radius: 0;
+    background: #ffffff;
+    left: -2px;
+    top: -2px;
+    min-height: 475px;
+    overflow: hidden;
     text-align: center;
-    margin-top: 10px;
-    margin-bottom: 5px;
-}
-
-.item_name {
-    font-size: 14px;
-    text-align: center;
-    margin-bottom: 15px;
-    margin-top: 10px;
-    word-wrap: break-word;
-}
-
-.to_cart {
+    box-sizing: border-box !important;
+  }
+  .product-item img {
     display: block;
-    padding: 6px 14px;
-    width: 83px;
-    background: #efefe8;
-    margin: 0 auto;
+    width: 100%;
+  }
+  .product-list{
+      display:flex;
+      flex-direction: column;
+  }
+  .product-name{
+    height: 42px;
+    line-height: 42px;
+    overflow: hidden;
+    font-size: 0;
+  }
+  .product-name h3{
+    display: inline-block;
+    line-height: 1.2;
+    vertical-align: middle;
+    color: #009900;
+    font-size: 18px;
+    font-weight: 400;
+    color: #444444;
+    margin: 0 0 10px 0;
+  }
+  .item_price {
+    font-size: 18px;
+    font-family: Din,OswaldBold, Helvetica, Arial, sans-serif;
     font-weight: bold;
-}
-
-.to_cart:hover {
-    color: #fff;
-    background: #1eff4f;
-    -webkit-transition: 0.6s;
-    -moz-transition: 0.6s;
-    -o-transition: 0.6s;
-    transition: 0.6s;
-}
-
-.to_cart:not(:hover) {
-    -webkit-transition: 0.6s;
-    -moz-transition: 0.6s;
-    -o-transition: 0.6s;
-    transition: 0.6s;
-}
-
+    color: #009900;
+    padding: 0 10px;
+  }
+  .to_cart {
+    text-decoration: none;
+    align-self: center;
+    display: inline-block;
+    padding: 0 12px;
+    background: #009900;
+    color: white;
+    text-transform: uppercase;
+    font-size: 12px;
+    line-height: 28px;
+    transition: .3s ease-in;
+  }
+  .to_cart:hover {background: #0b720b;}
+  .product-name:hover {color: #009900;}
+  .product-item:hover {
+    border: 2px solid #009900;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5); /* Параметры тени */
+    padding: 10px;}
 #footer {
     height: 35px !important;
     margin-top: -35px !important;
@@ -1202,18 +1188,21 @@ section, .header_middle, .header_bottom {
     color: #1eff4f;
     margin-top: 25px;
 }
-#here
-{
-    width:400px;
-    height:300px;
-    border: 1px solid grey;
-    display:none;
-}
 
-#here a{
-display:block;
-width:98%;
-padding:1%;
-font-size:20px;
-border-bottom:1px solid grey;
+.preloader{
+    position:fixed;
+    top:0;
+    opacity: 80%;
+    left:0;
+    right:0;
+    bottom:0;
+    z-index:9999;
+    background-color: #fefefe;
+    display: none;
+}
+.preloader img{
+    position: relative;
+    left:50%;
+    top:50vh;
+    margin:-100px 0 0 -100px;
 }

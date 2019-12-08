@@ -26,8 +26,6 @@ include (ROOT . '/views/parts/header.php');
                 <input type="email" name="email" value= <?= $userInfo['email'] ?>>
                 <p>Телефон</p>
                 <input type="text" name="phone" placeholder= <?= $userInfo['phone'] ?>>
-                <p>Пароль</p>
-                <input type="password" name="password" placeholder="Введите новый пароль">
                 <p>Адрес доставки</p>
                 <select name = "city_id">
                     <?php $city = City::getCityById($userInfo['city_id'])?>

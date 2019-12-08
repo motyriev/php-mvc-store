@@ -99,9 +99,8 @@ class User
      * @return bool
      */
 	 public static function checkPhone ($phone) {
-        if (strlen($phone) == 10) {
+        if (strlen($phone) == 10)
             return true;
-        }
         return false;
     }
 
@@ -288,7 +287,7 @@ class User
 	 * Принимаем данные из контроллера и записываем в БД
 	 * @return bool  возвращает true/false
 	 */
-	public static function editUserInfo($id, $firstName, $lastName, $email, $phone, $password, $city_id, $postoffice_id){
+	public static function editUserInfo($id, $firstName, $lastName, $email, $phone, $city_id, $postoffice_id){
 		$db = Db::getConnect();
 
         $sql = "
@@ -313,7 +312,6 @@ class User
 		$res -> bindParam(':postoffice_id', $postoffice_id, PDO::PARAM_INT);
 		$res -> bindParam(':id', $id, PDO::PARAM_INT);
 
-		
         return $res->execute();
 	}
 

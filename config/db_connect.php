@@ -5,7 +5,7 @@ return array(
 
 	'host' => 'localhost',
 	'user' => 'root',
-	'db_name' => 'hi-tech_shop',
+	'db_name' => 'vape_shop',
 	'pass' => ''
 
 );

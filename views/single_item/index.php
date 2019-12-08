@@ -3,19 +3,8 @@ include (ROOT . '/views/parts/header.php');
 ?>
 <section>
     <div class="container">
-        <!--left sidebar-->
-        <!-- <div class="sidebar">
-            <h2>Категории</h2>
-            <ul class="left_sidebar">
-                <?php foreach ($categories as $catItem): ?>
-                    <li><a href="/category/<?php echo $catItem['id']?>">
-                            <?php echo $catItem['name']?>
-                        </a></li>
-                <?php endforeach; ?>
-            </ul>
-        </div>й -->
         <!--main content-->
-        <p><?php echo $product['categoryName'];?></p>
+        <div class = "breadcrumbs"><?= $breadcrumbs;?></div>
         <div class="content">
             <div class="single_product">
                 <div class="product_info">
@@ -35,26 +24,37 @@ include (ROOT . '/views/parts/header.php');
                             <p><b>Наличие:</b> На складе</p>
                             <p><b>Состояние:</b> Новое</p>
                             <p><b>Производитель: </b><?php echo $product['brand']?></p>
+                            <div class="ionTabs" id="tabs_1" data-name="Tabs_Group_name">
+                            <ul class="ionTabs__head">
+                                <li class="ionTabs__tab" data-target="Tab_desctiption">Описание</li>
+                                <li class="ionTabs__tab" data-target="Tab_charact">Характеристики</li>
+                                <li class="ionTabs__tab" data-target="Tab_review">Отзывы</li>
+                            </ul>
+                            <div class="ionTabs__body">
+                                <div class="ionTabs__item" data-name="Tab_desctiption">
+                                    Контент вкладки 1
+                                </div>
+                                <div class="ionTabs__item" data-name="Tab_charact">
+                                    Контент вкладки 2
+                                </div>
+                                <div class="ionTabs__item" data-name="Tab_review">
+                                    Контент вкладки 3
+                                </div>
+
+                                <div class="ionTabs__preloader"></div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="product_description">
-                    <h3>Описание товара</h3>
-                    <p>
-                        <?php echo $product['description']?>
-                    </p>
-                </div>
                     <div class = "product_review">
-                    <h3>Комментарии</h3>
+                    <h3>Отзывы покупателей <?=$qtyReviews?></h3>
                     <div id="input_div">
                         <?php foreach($reviews as $review):?>
                         <?php $user = User::getUserById($review['user_id'])?>
-                        <p class="name">Name: <?php echo $user['last_name']?></p>
+                        <p class="name">Name: <?php echo $user['first_name']?></p>
                         <p class="date">Date: <?php echo $review['date']?></p>
                         <p class="text">Text: <?php echo $review['text']?></p>
                         <?php endforeach;?>
-                        <a target="_blank" href="/review/<?php echo $product['id'];?>">
-                             Все Комментарии
+                        <a href="/reviews/<?php echo $product['alias'];?>">
+                             Смотреть все отзывы
                         </a>
                     </div>
                 </div>

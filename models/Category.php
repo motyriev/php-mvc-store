@@ -7,16 +7,34 @@ class Category
     /**
     * @return array список категорий
     */
-    public static function getCategory () {
+    public static function getCategories () {
         $db = Db::getConnect();
-
-        $sql = "SELECT * FROM categorys";
+        $arr_cat = [];
+        $sql = "SELECT * FROM categories";
 
         $res = $db->query($sql);
 
-        $catList = $res->fetchAll(PDO::FETCH_ASSOC);
+        while ($row = $res->fetch(PDO::FETCH_ASSOC))
+        {
+            $arr_cat[$row['id']] = $row;
+        }
+        return $arr_cat;
+    }
+    public static function getCategoryByAlias($catAlias) {
 
-        return $catList;
+        $db = Db::getConnect();
+
+        $sql = "
+               SELECT * FROM categories
+                    WHERE alias = :alias
+               ";
+
+        $res = $db->prepare($sql);
+        $res->bindParam(':alias', $catAlias, PDO::PARAM_STR);
+        $res->execute();
+
+        $category = $res->fetch(PDO::FETCH_ASSOC);
+        return $category;
     }
 
      /**
@@ -27,7 +45,7 @@ class Category
     public static function getCategoryListAdmin () {
         $db = Db::getConnect();
 
-        $sql = "SELECT uriName, name FROM categorys";
+        $sql = "SELECT uriName, name FROM categories";
 
         $res = $db->query($sql);
 
@@ -40,7 +58,7 @@ class Category
 
         $db = Db::getConnect();
 
-        $sql = "INSERT INTO categorys(uriName, name)
+        $sql = "INSERT INTO categories(uriName, name)
                 VALUES(:uriName, :name)";
 
         $res = $db->prepare($sql);
@@ -54,7 +72,7 @@ class Category
     public static function deleteCategoryById($id){
         $db = Db::getConnect();
 
-        $sql = "DELETE FROM categorys WHERE uriName = :id";
+        $sql = "DELETE FROM categories WHERE uriName = :id";
 
         $res = $db->prepare($sql);
         $res -> bindParam(':id', $id, PDO::PARAM_STR);
