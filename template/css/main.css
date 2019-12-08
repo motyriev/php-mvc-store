@@ -19,7 +19,7 @@ body textarea {
 }
 
 /*********для прижатого футера*****************************/
-html {
+html, body {
     height: 100%;
 }
 .appendix {
@@ -50,20 +50,24 @@ section {
 #header {
     width: 100%;
     margin: 0 auto;
+    background-color: #fff;
 }
 
 .logo {
     float: left;
-    margin-top: 18px;
-    margin-left: 36px;
 }
 .top_nav{
+    padding: 10px;
+    height: 110px;
     display: flex;
-    font-size: 16px;
     justify-content: space-between;
 }
 .top_nav .main{
-    position: center;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 10px;
 }
 .top_nav .main ul{
     display: flex;
@@ -76,23 +80,34 @@ section {
 .top_nav .main ul li:not(:first-child):before {
     content: " | ";
 }
-.top_nav .phones{
-    display: flex;
-    flex-direction: column;
-    height: 100%;
+.stagstrong {
+    font-weight: bold;
+    display: inline-block;
+   margin-top: 5px;
+    color:#000;
 }
-.header_bottom{
-    width: 100%;
-    height: 80px;
-    font-size: 18px;
-    background-color: green;
+.sub-sub-area_bot{
+    color: #7f7f7f;
+    text-transform: uppercase;
+    font-family: Din,OswaldMedium, sans-serif;
+    font-size: 12px;
 }
-.search #search{
-    float: right;
-    height: inherit;
-    width: 80%;
+/* Поиск по сайту */
+  .container-1{
+    width: 300px;
+    vertical-align: middle;
+    white-space: nowrap;
+    position: relative;
+  }
+  .container-1 input#search{
+    width: 330px;
+    height: 30px;
     border: 1px solid grey;
-}
+    font-size: 10pt;
+    float: left;
+    color: #63717f;
+    padding-left: 45px;
+  }
 #here
 {
     width:400px;
@@ -102,11 +117,33 @@ section {
 }
 
 #here a{
-display:block;
+
 width:98%;
 padding:1%;
 font-size:20px;
 border-bottom:1px solid grey;
+}
+.top_nav .phones{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    text-align-last: center;
+}
+.top_nav .phones a{
+        color: #000;
+    display: block;
+    margin: 0;
+    font-family: Din,OswaldMedium, Helvetica, Arial, sans-serif;
+    font-size: 22px;
+    text-decoration: none;
+    line-height: 1;
+    margin-bottom: 2px;
+}
+.header_bottom{
+    width: 100%;
+    height: 52px;
+    font-size: 18px;
+    background-color: #009900;
 }
 .container .sidebar {
     width: 275px;
