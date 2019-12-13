@@ -13,7 +13,7 @@ class Product
         $db = Db::getConnect();
 
         $sql = "SELECT * FROM products
-                    WHERE cat_id = :id AND alias IS NOT NULL
+                    WHERE cat_id = :id AND alias IS NOT NULL 
                     $sql_parts
                 ";
 

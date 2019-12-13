@@ -3,10 +3,22 @@ include (ROOT . '/views/parts/header.php');
 ?>
 <section>
     <div class="container">
-        <!--main content-->
-        <?= $breadcrumbs;?>
-        <div class="content">
-            <div class="features_items">
+        <ul class="breadcrumbs"><?= $breadcrumbs;?></ul>
+        <div class="filter"><?php new Filter ?></div>
+        <div id="product_list_block">
+            <h1><?=$category['name']?></h1>
+            <form class="user_settings">
+                <div class="user_sort">
+                    <label for="user_pref">Сортировка по:</label>
+                    <select id="user_pref" name="user_pref">
+                        <option value="popular" selected="">Популярности</option>
+                        <option value="newest">Новинкам</option>
+                        <option value="price-asc">От дешевых к дорогим</option>
+                        <option value="price-desc">От дорогих к дешевым</option>
+                    </select>
+                </div>
+            </form>
+            <div class="box_items">
                 <!--single item-->
                 <?php foreach($products as $product):?>
                     <div class="product-item">
@@ -26,7 +38,6 @@ include (ROOT . '/views/parts/header.php');
             </div>
         </div>
     </div>
-    <div class="filter"><?php new Filter ?></div>
 </section>
 <div class="appendix"></div>
 <?php

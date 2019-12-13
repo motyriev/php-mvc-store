@@ -17,8 +17,14 @@ Body - not related to megamenu
     box-sizing: border-box;
 }
 
-a {
-    color: #333;
+.menu-container  a {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 10px;
+    background: transparent;
+    color: #fff;
+    width: 100%;
+    text-align: center;
 }
 
 .description {
@@ -52,14 +58,18 @@ Screen style's
 
 
 .menu-dropdown-icon:before {
-    content: "\f489";
+    content: url(/upload/img/zhidkostp-180x240.png);
     font-family: "Ionicons";
-    display: none;
+    display: block;
     cursor: pointer;
-    float: right;
-    padding: 1.5em 2em;
-    background: #fff;
+    float: left;
+    padding-top: 10px;
+    padding-left: 5px;
     color: #333;
+}
+.menu{
+    display: flex;
+    flex-direction: row;
 }
 .menu > ul {
     margin: 0 auto;
@@ -70,11 +80,12 @@ Screen style's
     position: relative;
     /* IF .menu position=relative -> ul = container width, ELSE ul = 100% width */
     box-sizing: border-box;
+    justify-content: center;
 }
 
 .menu > ul:before,
 .menu > ul:after {
-    content: "";
+    content:"";
     display: table;
 }
 
@@ -91,20 +102,19 @@ Screen style's
 
 .menu > ul > li a {
     text-decoration: none;
-    height: 50px;
-    padding: 1.5em 3em;
+    height: 55px;
+    padding: 1.7em 3em;
     display: block;
 }
 
-.menu > ul > li:hover {
-    background: #008522;
+.menu li:hover {
+    background: #3c0;
 }
 
 .menu > ul > li > ul {
     display: none;
     width: 100%;
     background: #009900;
-    padding: 20px;
     position: absolute;
     z-index: 99;
     left: 0;
@@ -127,17 +137,15 @@ Screen style's
     margin: 0;
     padding-bottom: 0;
     list-style: none;
-    width: 25%;
     background: none;
     float: left;
 }
 
 .menu > ul > li > ul > li a {
-    color: #777;
-    padding: .2em 0;
-    width: 95%;
+    padding: .3em 0;
+    text-align: center;
     display: block;
-    border-bottom: 1px solid #ccc;
+    border-top: 1px solid #fff;
 }
 
 .menu > ul > li > ul > li > ul {
@@ -171,9 +179,9 @@ Screen style's
 }
 
 .menu > ul > li > ul.normal-sub {
-    width: 300px;
+    width: 220px;
     left: auto;
-    padding: 10px 20px;
+    padding: 0;
 }
 
 .menu > ul > li > ul.normal-sub > li {
@@ -181,6 +189,5 @@ Screen style's
 }
 
 .menu > ul > li > ul.normal-sub > li a {
-    border: 0;
-    padding: 1em 0;
+    padding: 20px 0 0 0;
 }

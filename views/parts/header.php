@@ -5,9 +5,8 @@ include (ROOT . '/widgets/menu/menu.php');
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Hi-tech Shop</title>
+    <title>Vape Shop</title>
     <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
-    <link href="<?php ROOT?>/template/css/normalize.css" rel="stylesheet">
     <link href="<?php ROOT?>/template/css/main.css" rel="stylesheet">
     <link href="<?php ROOT?>/template/megamenu/css/style.css" rel="stylesheet">
     <link href="<?php ROOT?>/template/css/ion.tabs.css" rel="stylesheet">

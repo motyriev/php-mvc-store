@@ -1,14 +1,15 @@
 <?php foreach($products as $product):?>
-                    <div class="item">
-                    <a href="/product/<?php echo $product['alias']?>">
+                    <div class="product-item">
+                        <a href="/product/<?php echo $product['alias']?>">
                             <img alt="" width="268px" height="249px" src="<?php echo Product::getImage($product['alias']); ?>"/>
                         </a>
-                        <p class="item_price"><?php echo $product['price']?>&nbspгрн</p>
-                        <a href="/product/<?php echo $product['alias']?>">
-                            <p class="item_name"><?php echo $product['name']?></p>
-                        </a>
-                        <a href="#" class="to_cart" data-id="<?php echo $product['alias'];?>">
+                        <div class="product-list">
+                            <a href="/product/<?php echo $product['alias']?>">
+                                <div class="product-name"><h3><?php echo $product['name']?></h3></div></a>
+                            <span class="item_price">Цена: <?php echo $product['price']?>&nbspгрн</span>
+                        <a href="#" class="to_cart" data-id="<?php echo $product['id'];?>">
                             Купить
                         </a>
+                        </div>
                     </div>
-<?php endforeach;?>
+                <?php endforeach;?>

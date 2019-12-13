@@ -2,8 +2,8 @@ body {
     margin: 0;
     padding: 0;
     line-height: 1.42857143;
-    font-family: Din,OswaldMedium, Helvetica, Arial, sans-serif;
-    background: #f1f1f1 url(/pics/bg.jpg) scroll repeat 0 0;
+    font-family: 'Oswald', sans-serif;
+    background: #f1f1f1 url(/upload/img/bg.jpg) scroll repeat 0 0;
     color: #000;
     font-size: 14px;
 }
@@ -52,7 +52,13 @@ section {
     margin: 0 auto;
     background-color: #fff;
 }
-
+option {
+    font-weight: normal;
+    display: block;
+    white-space: pre;
+    min-height: 1.2em;
+    padding: 0px 2px 1px;
+}
 .logo {
     float: left;
 }
@@ -73,12 +79,23 @@ section {
     display: flex;
     font-size: 13px;
 }
-.top_nav .main ul li{
+.top_nav .main ul li {
     padding-left:3px;
 }
-
+.sub-area_top > ul > li {
+    padding-left:3px;
+}
+.sub-area_top > ul > li > a {
+    font-size: 13px;
+    color: #009900;
+    text-transform: uppercase;
+    font-family: 'Oswald', sans-serif;
+    font-weight: bolder;
+}
 .top_nav .main ul li:not(:first-child):before {
-    content: " | ";
+    content: " · ";
+    font-weight: bolder;
+    color: #009900;
 }
 .stagstrong {
     font-weight: bold;
@@ -89,7 +106,7 @@ section {
 .sub-sub-area_bot{
     color: #7f7f7f;
     text-transform: uppercase;
-    font-family: Din,OswaldMedium, sans-serif;
+    font-family: 'Oswald', sans-serif;
     font-size: 12px;
 }
 /* Поиск по сайту */
@@ -130,10 +147,9 @@ border-bottom:1px solid grey;
     text-align-last: center;
 }
 .top_nav .phones a{
-        color: #000;
+    color: #000;
     display: block;
     margin: 0;
-    font-family: Din,OswaldMedium, Helvetica, Arial, sans-serif;
     font-size: 22px;
     text-decoration: none;
     line-height: 1;
@@ -141,39 +157,100 @@ border-bottom:1px solid grey;
 }
 .header_bottom{
     width: 100%;
-    height: 52px;
-    font-size: 18px;
+    font-size: 15px;
+    font-family: 'Oswald', sans-serif;    
+    text-transform: uppercase;
     background-color: #009900;
 }
-.container .sidebar {
-    width: 275px;
+
+.container {
     float: left;
+    width: 100%;
+    margin: 20px;
+    background-color: #fff;
+    border: 1px solid grey;
+    border-radius: 5px;
 }
 
-.container .content {
+.product-item {
     float: left;
-    width: 925px;
-}
-
-.container .content .product-item {
-    float: left;
-    margin-bottom: 28px;
-    margin-right: 28px;
+    margin-top: 28px;
+    margin-left: 28px;
     width: 268px;
     height: 422px;
     position: relative;
     z-index: 1;
 }
-
-.new {
-    position: absolute;
-    z-index: 2;
+ul.breadcrumbs{
+    background: #fff;
+    margin: 0;
+    border-radius: 0;
+    padding: 20px;
+    border-bottom: 1px solid     grey;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+}
+ul.breadcrumbs > li{
+    display: inline-block;
+}
+ul.breadcrumbs > a >span, ul.breadcrumbs > li, ul.breadcrumbs > li a{
+    text-decoration: none;
+    color: #009900 !important;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 14px;
+    vertical-align: middle;
+}
+ul.breadcrumbs > li::before, ul.breadcrumbs > li a{
+    content: "  /   ";
+    color: grey;
+    font-weight: bold;
+}
+.filter{
+    float: left;
+    width: 285px;
+}
+.filter-block{
+    margin-bottom: 1.6em;
 }
 
-.features_items h2 {
-    width: 235px;
-    margin: 0 auto 30px;
+.filter-block h4{
+    position: relative;
+    padding: 5px 20px;
+    color: #fff;
+    background-color:#009900;
+    cursor: pointer;
 }
+#product_list_block{
+    float:left;
+    padding: 0 10px 0 0;
+    text-align: center;
+}
+.user_settings {
+    display: block;
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+    margin: 10px 0;
+    text-align: center;
+}
+.user_settings select{
+    height: 30px;
+    line-height: 30px;
+}
+.user_sort{
+    display: inline-block;
+    vertical-align: middle;
+    text-align: left;
+    font-size: 14px;
+    width: 33.33%;
+    min-width: 300px;
+}
+
+.box_items{
+   
+    float:left;
+}
+
 .product-item {
     border-radius: 0;
     background: #ffffff;
@@ -210,7 +287,7 @@ border-bottom:1px solid grey;
   }
   .item_price {
     font-size: 18px;
-    font-family: Din,OswaldBold, Helvetica, Arial, sans-serif;
+    font-family: 'Oswald', sans-serif;
     font-weight: bold;
     color: #009900;
     padding: 0 10px;
@@ -232,7 +309,9 @@ border-bottom:1px solid grey;
   .product-item:hover {
     border: 2px solid #009900;
     box-shadow: 0 0 5px rgba(0,0,0,0.5); /* Параметры тени */
-    padding: 10px;}
+    padding: 10px;
+}
+
 #footer {
     height: 35px !important;
     margin-top: -35px !important;

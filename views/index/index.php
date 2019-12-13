@@ -11,7 +11,7 @@ include ROOT . '/views/parts/header.php';
         </div>
         <!--main content-->
         <div class="content">
-            <div class="features_items">
+            <div class="box_items">
                 <h2>Последние товары</h2>
             </div>
         </div>

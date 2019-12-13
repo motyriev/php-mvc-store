@@ -4,7 +4,7 @@ include (ROOT . '/views/parts/header.php');
 <section>
     <div class="container">
         <!--main content-->
-        <div class = "breadcrumbs"><?= $breadcrumbs;?></div>
+        <ul class="breadcrumbs"><?= $breadcrumbs;?></ul>
         <div class="content">
             <div class="single_product">
                 <div class="product_info">

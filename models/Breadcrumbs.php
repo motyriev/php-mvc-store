@@ -7,11 +7,11 @@ public static function getBreadcrumbs($current_category_id, $name = ''){
 
     $breadcrumbs_array = self::getParts($cats, $current_category_id);
 
-    $breadcrumbs = "<li><a href='\'>Главная</a></li>";
+    $breadcrumbs = "<a href='\'><span>ГЛАВНАЯ </span></a>";
 
     if($breadcrumbs_array){
         foreach($breadcrumbs_array as $alias => $title){
-             $breadcrumbs .= "<li><a href='/category/{$alias}'>{$title}</a></li>";
+             $breadcrumbs .= "<li><a href='/category/{$alias}'>{$title}</a></li> ";
         }
     }
     if($name){
