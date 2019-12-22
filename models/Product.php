@@ -9,12 +9,30 @@ class Product
      * @param $catAlias ид. категории
      * @return array
      */
-    public static function getProductListByCatId ($catId, $sql_parts = NULL) {
+    public static function getProductListByCatId ($catId, $sql_parts = NULL, $sort = NULL){
+        switch ($sort){
+            case 'popular':
+            $sort = 'ORDER BY count DESC';
+            break;
+
+            case 'newest':
+            $sort = 'ORDER BY datetime DESC';
+            break;
+
+            case 'price-asc':
+            $sort = 'ORDER BY price ASC';
+            break;
+
+            case 'price-desc':
+            $sort = 'ORDER BY price DESC';
+            break;
+            default: $sort = 'ORDER BY price ASC'; break;
+        }
         $db = Db::getConnect();
 
         $sql = "SELECT * FROM products
-                    WHERE cat_id = :id AND alias IS NOT NULL 
-                    $sql_parts
+                   WHERE cat_id = :id AND alias IS NOT NULL
+                    $sql_parts $sort
                 ";
 
         $res = $db->prepare($sql);

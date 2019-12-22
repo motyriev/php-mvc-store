@@ -19,7 +19,6 @@ class CartController
     }
     /**
      * Главная страница корзины
-     *
      * @return bool
      */
      public function actionIndex (){
@@ -66,6 +65,7 @@ class CartController
         $totalQuantity = Cart::itemsCount();
 
         //Поля для формы
+        $userInfo='';
         $userName ='';
         $userPhone = '';
         $userText = '';
@@ -77,8 +77,8 @@ class CartController
         if(!User::isGuest()){
             //если не гость, получаем данные о пользователе из БД
             $userId = User::checkLog();
-            $user = User::getUserById($userId);
-            $userName = $user['first_name'];
+            $userInfo = User::getUserById($userId);
+            $userName = $userInfo['first_name'];
         }else $userId = false; //Если гость, то поля формы будут пустыми
 
         //Обработка формы

@@ -5,7 +5,7 @@ return array(
 	'index.php' => 'index/index', //вызываем actionIndex в IndexController
 	'' => 'index/index',  //вызываем actionIndex в IndexController
 
-	'search/([a-z0-9-]+)' => 'search/index/$1',
+	'search/([^?]+)' => 'search/index/$1',
 
 	//комментарии
 	'reviews/([a-z0-9-]+)' => 'review/view/$1',

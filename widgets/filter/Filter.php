@@ -3,8 +3,8 @@ Class Filter{
     public $groups;
     public $attrs;
 
-    public function __construct(){
-        $this->groups = $this->getGroups();
+    public function __construct($categoryAlias){
+        $this->groups = $this->getGroups($categoryAlias);
         $this->attrs = self::getAttrs();
         $this->run();
     }
@@ -15,13 +15,16 @@ Class Filter{
     }
 
     //получаем группы фильтров
-    protected function getGroups(){
-
+    protected function getGroups($category){
         $db = DB::getConnect();
-        $sql = "SELECT * FROM attribute_group";
-        $res = $db->query($sql);
+        $sql = "SELECT id_attribute, name_attribute
+                    FROM attribute_group
+                        WHERE alias = :category";
+        $res = $db->prepare($sql);
+        $res->bindParam(':category', $category, PDO::PARAM_STR);
+        $res->execute();
         $data = $res->fetchAll(PDO::FETCH_ASSOC);
-
+        debug($data);
         $groups=[];
         foreach ($data as $key => $value) {
             $groups[$value['id_attribute']] = $value['name_attribute'];
@@ -33,14 +36,13 @@ Class Filter{
     protected static function getAttrs(){
 
         $db = DB::getConnect();
-         $sql = "SELECT * FROM attribute_value";
+        $sql = "SELECT * FROM attribute_value";
         $res = $db->query($sql);
         $data = $res->fetchAll(PDO::FETCH_UNIQUE);
         $attrs=[];
         foreach ($data as $key => $value) {
             $attrs[$value['id_attr_group']][$key] = $value['value'];
         }
-        debug($attrs);
         return $attrs;
     }
 

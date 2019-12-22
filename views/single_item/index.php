@@ -9,17 +9,16 @@ include (ROOT . '/views/parts/header.php');
             <div class="single_product">
                 <div class="product_info">
                     <div class="single_product_img">
-                        <img alt="" width="350px" src="<?php echo Product::getImage($product['id']); ?>" />
+                        <img alt="" width="350px" src="<?= Product::getImage($product['id']); ?>" />
                     </div>
                     <div class="single_product_details">
                         <div class="single_product_details_main">
-                            <h2><?php echo $product['name']?></h2>
-                            <p class="code">Код товара: <?php echo $product['id']?></p>
-                            <p class="item_price"><?php echo $product['price']?>&nbsp;грн</p>
+                            <h2><?= $product['name']?></h2>
+                            <p class="code">Код товара: <?= $product['id']?></p>
+                            <p class="item_price"><?= $product['price']?>&nbsp;грн</p>
                             <div id="input_div">
-                                <a href="#" class="to_cart" data-id="<?php echo $product['id'];?>">
-                                   Купить
-                                </a>
+                                <a href="#" class="to_cart" data-id="<?= $product['id'];?>">
+                                   Купить</a>
                             </div>
                             <p><b>Наличие:</b> На складе</p>
                             <p><b>Состояние:</b> Новое</p>
@@ -43,7 +42,7 @@ include (ROOT . '/views/parts/header.php');
 
                                 <div class="ionTabs__preloader"></div>
                             </div>
-                        </div>
+                    </div>
                     <div class = "product_review">
                     <h3>Отзывы покупателей <?=$qtyReviews?></h3>
                     <div id="input_div">

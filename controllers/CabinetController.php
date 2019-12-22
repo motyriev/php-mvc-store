@@ -14,7 +14,6 @@ class CabinetController
         $userId =  User::checkLog();
         //Получаем всю информацию о пользователе из БД
         $userInfo = User::getUserById($userId);
-
         require_once ROOT . '/views/cabinet/index.php';
         return true;
     }
@@ -26,7 +25,7 @@ class CabinetController
         $userInfo = User::getUserById($userId);
         $res = '';
 
-        if(isset($_POST) and (!empty($_POST)))
+        if(isset($_POST) and !empty($_POST))
         {
             $currentPass = trim(strip_tags($_POST['current_pass']));
             $newPass1 = trim(strip_tags($_POST['new_pass1']));
@@ -62,7 +61,7 @@ class CabinetController
         $userInfo = User::getUserById($userId);
         $res = false;
 
-        if (isset($_POST) and (!empty($_POST))){
+        if (isset($_POST) and !empty($_POST)){
 
             //Удаляем теги, пробелы и сохраняем в переменные для проверки
 			$firstName = trim(strip_tags($_POST['first_name']));

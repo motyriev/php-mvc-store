@@ -41,7 +41,7 @@ class Cart
 
     //Удаляем продукт из корзины
     public static function delProduct($productId){
-        
+
         //получаем массив товаров(Колво, id) из корзины
         $productsInCart = self::getProducts();
 
@@ -74,20 +74,14 @@ class Cart
 
         $productsInCart = self::getProducts();
         $total = 0;
-        
         if ($products) {
             foreach ($products as $item) {
                 $total += $item['price'] * $productsInCart[$item['id']];
             }
-
-            return $total;
         }
-
-
+        return $total;
     }
-    
     //оформить заказ
-
     public static function clear(){
         if (isset($_SESSION['products'])) {
             unset($_SESSION['products']);

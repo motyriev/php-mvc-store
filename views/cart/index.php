@@ -4,7 +4,7 @@ include (ROOT . '/views/parts/header.php');
 <section>
     <div class="container">
         <!--main content-->
-        <div class="content">
+        <div id="cart_content">
             <?php if($productsInCart):?>
                 <h2>Корзина</h2>
                 <p>Вы выбрали такие товары:</p>
